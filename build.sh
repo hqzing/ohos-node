@@ -63,6 +63,7 @@ export CXX_host="g++"
 make -j$(nproc)
 make install
 
+
 # code signing
 /opt/ohos-sdk/linux/toolchains/lib/binary-sign-tool sign \
   -inFile node-${version}-openharmony-arm64/bin/node \
