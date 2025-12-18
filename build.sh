@@ -59,7 +59,7 @@ if echo " $need_no_error_versions " | grep -q " $version "; then
 fi
 export CC_host="gcc"
 export CXX_host="g++"
-./configure --dest-cpu=arm64 --dest-os=openharmony --cross-compiling --prefix=node-${version}-openharmony-arm64
+./configure --dest-cpu=arm64 --dest-os=openharmony --cross-compiling --prefix=node-${version}-openharmony-arm64 --fully-static --enable-static
 make -j$(nproc)
 make install
 
