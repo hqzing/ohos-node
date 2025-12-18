@@ -2,7 +2,7 @@ name: Build Static Node.js for OpenHarmony
 
 on:
   push:
-    branches: [ "build-ohos-static" ]
+    branches: [ "dev-ohos-static" ]
   workflow_dispatch:
     inputs:
       node_version:
