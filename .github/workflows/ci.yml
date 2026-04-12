@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Set Node.js branch or tag name
         run: |
           if [ "${{ github.event_name }}" == "release" ]; then
@@ -28,12 +28,12 @@ jobs:
       - name: Build
         run: ./build.sh ${{ env.VERSION }}
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
-          path: ${{ github.workspace }}/node-${{ env.VERSION }}-openharmony-arm64.tar.gz
+          path: node-${{ env.VERSION }}-openharmony-arm64.tar.gz
           retention-days: 7
       - name: Upload release asset
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         if: github.event_name == 'release'
         with:
-          files: ${{ github.workspace }}/node-${{ env.VERSION }}-openharmony-arm64.tar.gz
+          files: node-${{ env.VERSION }}-openharmony-arm64.tar.gz
