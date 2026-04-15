@@ -1,0 +1,5 @@
+*.tar.gz
+node-*-openharmony-arm64
+ohos-sdk
+llvm-19
+node
