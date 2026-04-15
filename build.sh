@@ -45,24 +45,24 @@ tar -zxf llvm-linux-x86_64.tar.gz
 tar -zxf ohos-sysroot.tar.gz
 cd ..
 
-# download Node.js source code
 git clone --branch $version --depth 1 https://github.com/nodejs/node.git
-
-# build
 cd node
+
+export CC="$workdir/llvm-19/llvm/bin/aarch64-unknown-linux-ohos-clang"
+export CXX="$workdir/llvm-19/llvm/bin/aarch64-unknown-linux-ohos-clang++"
+export CC_host="gcc"
+export CXX_host="g++"
+
 need_patch_versions="v24.2.0 v24.3.0 v24.4.0 v24.4.1 v24.5.0 v24.6.0"
 if echo " $need_patch_versions " | grep -q " $version "; then
     patch -p1 < ../0001-fix-argument-list-too-long.patch
 fi
-export CC="$workdir/llvm-19/llvm/bin/aarch64-unknown-linux-ohos-clang"
-export CXX="$workdir/llvm-19/llvm/bin/aarch64-unknown-linux-ohos-clang++"
+
 need_no_error_versions="v24.2.0 v24.3.0 v24.4.0 v24.4.1 v24.5.0 v24.6.0 v24.7.0 v24.8.0"
 if echo " $need_no_error_versions " | grep -q " $version "; then
     export CC="$CC -Wno-error=implicit-function-declaration"
     export CXX="$CXX -Wno-error=implicit-function-declaration"
 fi
-export CC_host="gcc"
-export CXX_host="g++"
 
 CONFIGURE_ARGS="--dest-cpu=arm64 \
   --dest-os=openharmony \
