@@ -63,7 +63,23 @@ if echo " $need_no_error_versions " | grep -q " $version "; then
 fi
 export CC_host="gcc"
 export CXX_host="g++"
-./configure --dest-cpu=arm64 --dest-os=openharmony --cross-compiling --prefix=$workdir/node-${version}-openharmony-arm64
+
+CONFIGURE_ARGS="--dest-cpu=arm64 \
+  --dest-os=openharmony \
+  --cross-compiling \
+  --prefix=$workdir/node-${version}-openharmony-arm64"
+
+# Node.js's build system enables Temporal by default when a Rust environment
+# is available on the build machine.
+# For details, see this PR: https://github.com/nodejs/node/pull/61806.
+# However, enabling Temporal causes build failures during cross-compilation for OHOS.
+# To ensure this build script works correctly on machines with Rust environments
+# (such as GitHub Actions runners), Temporal is explicitly disabled here.
+if ./configure --help 2>&1 | grep -q -- "--v8-disable-temporal-support"; then
+    CONFIGURE_ARGS="$CONFIGURE_ARGS --v8-disable-temporal-support"
+fi
+
+./configure $CONFIGURE_ARGS
 make -j$(nproc)
 make install
 cd ..
