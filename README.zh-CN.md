@@ -50,13 +50,13 @@ export PATH=$PATH:/data/node-v24.2.0-openharmony-arm64/bin
 # 现在可以使用 node 命令了
 ```
 
-**3\. 在 [鸿蒙容器](https://github.com/hqzing/docker-mini-openharmony) 中使用**
+**3\. 在 [鸿蒙容器](https://github.com/hqzing/dockerharmony) 中使用**
 
 在容器中用 curl 下载这个软件包，然后以“解压 + 配 PATH” 的方式使用。
 
 示例：
 ```sh
-docker run -itd --name=ohos ghcr.io/hqzing/docker-mini-openharmony:latest
+docker run -itd --name=ohos ghcr.io/hqzing/dockerharmony:latest
 docker exec -it ohos sh
 
 cd /root

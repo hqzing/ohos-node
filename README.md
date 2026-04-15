@@ -52,13 +52,13 @@ export PATH=$PATH:/data/node-v24.2.0-openharmony-arm64/bin
 # You can now use the 'node' command.
 ```
 
-**3. Inside the [OpenHarmony Container](https://github.com/hqzing/docker-mini-openharmony)**
+**3. Inside the [OpenHarmony Container](https://github.com/hqzing/dockerharmony)**
 
 Download the tarball with `curl` inside the container, extract, and add to `PATH`.
 
 Example:
 ```sh
-docker run -itd --name=ohos ghcr.io/hqzing/docker-mini-openharmony:latest
+docker run -itd --name=ohos ghcr.io/hqzing/dockerharmony:latest
 docker exec -it ohos sh
 
 cd /root
