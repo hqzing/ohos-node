@@ -52,8 +52,8 @@ cd ..
 git clone --branch $version --depth 1 https://github.com/nodejs/node.git
 cd node
 
-export CC="$workdir/llvm-19/llvm/bin/aarch64-unknown-linux-ohos-clang"
-export CXX="$workdir/llvm-19/llvm/bin/aarch64-unknown-linux-ohos-clang++"
+export CC="$workdir/llvm-19/llvm/bin/aarch64-unknown-linux-ohos-clang -fno-emulated-tls"
+export CXX="$workdir/llvm-19/llvm/bin/aarch64-unknown-linux-ohos-clang++ -fno-emulated-tls"
 export CC_host="gcc"
 export CXX_host="g++"
 
@@ -78,6 +78,7 @@ fi
 CONFIGURE_ARGS="--dest-cpu=arm64 \
   --dest-os=openharmony \
   --cross-compiling \
+  --openssl-no-asm \
   --prefix=$workdir/node-${version}-openharmony-arm64"
 
 # Node.js's build system enables Temporal by default when a Rust environment
