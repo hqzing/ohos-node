@@ -19,7 +19,6 @@ Layout (compatible with nodejs.org/dist):
       |-- index.html            # version browse page (size/sha256/download links)
       |-- node-v<ver>-<os>-<arch>.tar.xz     # OpenHarmony build xz
       |-- node-v<ver>-<os>-<arch>.tar.gz     # OpenHarmony build gz
-      |-- node-v<ver>.tar.xz/.tar.gz          # upstream source (nodejs.org)
       |-- node-v<ver>-headers.tar.xz/.tar.gz  # upstream headers (nodejs.org)
       `-- SHASUMS256.txt        # checksums (nvm compares, names must match)
 
@@ -45,7 +44,7 @@ from datetime import date
 REPO = "hqzing/ohos-node"              # repo with OpenHarmony build assets
 OS = "openharmony"                     # target os
 ARCH = "arm64"                         # target arch
-UPSTREAM = "https://nodejs.org/dist"   # source/headers upstream
+UPSTREAM = "https://nodejs.org/dist"   # headers upstream
 VERSIONS = os.environ.get("VERSIONS", "").split()  # empty = auto-discover
 # ----------------------------
 
@@ -238,9 +237,6 @@ def process_version(version, out_dir):
         # OpenHarmony builds xz + gz (GitHub)
         (f"{gh_base}/{base}.tar.xz", f"{base}.tar.xz"),
         (f"{gh_base}/{base}.tar.gz", f"{base}.tar.gz"),
-        # Upstream source xz + gz (nodejs.org, same tag)
-        (f"{UPSTREAM}/{version}/node-{version}.tar.xz", f"node-{version}.tar.xz"),
-        (f"{UPSTREAM}/{version}/node-{version}.tar.gz", f"node-{version}.tar.gz"),
         # Upstream headers xz + gz
         (f"{UPSTREAM}/{version}/node-{version}-headers.tar.xz", f"node-{version}-headers.tar.xz"),
         (f"{UPSTREAM}/{version}/node-{version}-headers.tar.gz", f"node-{version}-headers.tar.gz"),
@@ -289,9 +285,6 @@ def build_index_rows(versions, out_dir, official):
         if os.path.exists(os.path.join(dir_path, f"{v_base}.tar.xz")) or \
            os.path.exists(os.path.join(dir_path, f"{v_base}.tar.gz")):
             files_list.append(f"{OS}-{ARCH}")
-        if os.path.exists(os.path.join(dir_path, f"node-{v}.tar.xz")) or \
-           os.path.exists(os.path.join(dir_path, f"node-{v}.tar.gz")):
-            files_list.append("src")
         if os.path.exists(os.path.join(dir_path, f"node-{v}-headers.tar.xz")) or \
            os.path.exists(os.path.join(dir_path, f"node-{v}-headers.tar.gz")):
             files_list.append("headers")
