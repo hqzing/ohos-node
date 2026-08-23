@@ -4,7 +4,7 @@ set -e
 if [ -z "$1" ]; then
     echo "usage: ./build.sh <branch name or tag name>"
     echo "example: ./build.sh main"
-    echo "example: ./build.sh v24.2.0"
+    echo "example: ./build.sh v26.7.0"
     exit 1
 fi
 

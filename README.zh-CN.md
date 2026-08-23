@@ -21,26 +21,21 @@
 解压压缩包，将解压出的 `bin` 目录加入 `PATH` 即可：
 
 ```sh
-tar -zxf node-v24.2.0-openharmony-arm64.tar.gz
-export PATH=$PATH:$(realpath node-v24.2.0-openharmony-arm64/bin)
+tar -zxf node-v26.7.0-openharmony-arm64.tar.gz
+export PATH=$PATH:$(realpath node-v26.7.0-openharmony-arm64/bin)
 
 # 现在可以使用 node 命令了
 ```
 
-**2\. 使用 nvm / fnm 安装**（正在适配，敬请期待）
+**2\. 使用 nvm / fnm 安装**
 
-适配工作还在进行中，还需要打几个补丁才能让 nvm / fnm 从分发源安装。
-
-预期的用法如下：
+通过 [Harmonybrew](https://atomgit.com/Harmonybrew) 安装 nvm / fnm，然后指定使用这个分发源：
 
 ```sh
 # nvm
-NVM_NODEJS_ORG_MIRROR=https://ohos-node.com/dist nvm install v24.2.0
-# 或持久化配置：
-nvm set node_mirror https://ohos-node.com/dist
-
+NVM_NODEJS_ORG_MIRROR=https://ohos-node.com/dist nvm install v26.7.0
 # fnm
-FNM_NODE_DIST_MIRROR=https://ohos-node.com/dist fnm install 24
+FNM_NODE_DIST_MIRROR=https://ohos-node.com/dist fnm install 26
 ```
 
 ## 从源码构建
@@ -52,7 +47,7 @@ FNM_NODE_DIST_MIRROR=https://ohos-node.com/dist fnm install 24
 这里以 Ubuntu 24.04 x64 作为示例：
 ```sh
 sudo apt update && sudo apt install -y build-essential unzip jq
-./build.sh v24.2.0
+./build.sh v26.7.0
 ```
 
 **2\. 使用流水线构建**

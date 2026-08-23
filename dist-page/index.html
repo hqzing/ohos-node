@@ -84,21 +84,17 @@
 
     <h3>1. Manual install</h3>
     <p>Extract the tarball and add the <code>bin</code> directory to <code>PATH</code>:</p>
-    <pre><code>tar -zxf node-v24.2.0-openharmony-arm64.tar.gz
-export PATH=$PATH:$(realpath node-v24.2.0-openharmony-arm64/bin)
+    <pre><code>tar -zxf node-v26.7.0-openharmony-arm64.tar.gz
+export PATH=$PATH:$(realpath node-v26.7.0-openharmony-arm64/bin)
 
 # You can now use the 'node' command.</code></pre>
 
-    <h3>2. Install via nvm / fnm <span class="wip">(under adaptation, coming soon)</span></h3>
-    <p>Support is under adaptation — a few patches are still needed before nvm / fnm can install from the dist source.</p>
-    <p>The intended usage:</p>
+    <h3>2. Install via nvm / fnm</h3>
+    <p>Install nvm / fnm via <a href="https://atomgit.com/Harmonybrew">Harmonybrew</a>, then configure them to use this dist source:</p>
     <pre><code># nvm
-NVM_NODEJS_ORG_MIRROR=https://ohos-node.com/dist nvm install v24.2.0
-# or persist it:
-nvm set node_mirror https://ohos-node.com/dist
-
+NVM_NODEJS_ORG_MIRROR=https://ohos-node.com/dist nvm install v26.7.0
 # fnm
-FNM_NODE_DIST_MIRROR=https://ohos-node.com/dist fnm install 24</code></pre>
+FNM_NODE_DIST_MIRROR=https://ohos-node.com/dist fnm install 26</code></pre>
   </section>
 
 </main>

@@ -6,7 +6,7 @@ and similar tools.
 
 Usage:
   ./deploy-nodejs-dist.py [output-dir]
-  VERSIONS="v24.2.0 v24.3.0" ./deploy-nodejs-dist.py [output-dir]
+  VERSIONS="v26.6.0 v26.7.0" ./deploy-nodejs-dist.py [output-dir]
 
   output-dir defaults to /var/www/html/dist (nginx 80 port web root).
 

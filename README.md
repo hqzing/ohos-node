@@ -21,26 +21,21 @@ Pre-built packages are available from two sources:
 Extract the tarball and add the `bin` directory to `PATH`:
 
 ```sh
-tar -zxf node-v24.2.0-openharmony-arm64.tar.gz
-export PATH=$PATH:$(realpath node-v24.2.0-openharmony-arm64/bin)
+tar -zxf node-v26.7.0-openharmony-arm64.tar.gz
+export PATH=$PATH:$(realpath node-v26.7.0-openharmony-arm64/bin)
 
 # You can now use the 'node' command.
 ```
 
-**2. Install via nvm / fnm** (under adaptation, coming soon)
+**2. Install via nvm / fnm**
 
-Support is under adaptation — a few patches are still needed before nvm / fnm can install from the dist source.
-
-The intended usage:
+Install nvm / fnm via [Harmonybrew](https://atomgit.com/Harmonybrew), then configure them to use this dist source:
 
 ```sh
 # nvm
-NVM_NODEJS_ORG_MIRROR=https://ohos-node.com/dist nvm install v24.2.0
-# or persist it:
-nvm set node_mirror https://ohos-node.com/dist
-
+NVM_NODEJS_ORG_MIRROR=https://ohos-node.com/dist nvm install v26.7.0
 # fnm
-FNM_NODE_DIST_MIRROR=https://ohos-node.com/dist fnm install 24
+FNM_NODE_DIST_MIRROR=https://ohos-node.com/dist fnm install 26
 ```
 
 ## Build from Source
@@ -52,7 +47,7 @@ You need a Linux x64 host to cross-compile Node.js with the supplied `build.sh`.
 Example on Ubuntu 24.04 x64:
 ```sh
 sudo apt update && sudo apt install -y build-essential unzip jq
-./build.sh v24.2.0
+./build.sh v26.7.0
 ```
 
 **2. CI Build**
