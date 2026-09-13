@@ -5,3 +5,4 @@ daily_build.log
 manifest_tag.xml
 llvm-19
 node
+*.swp

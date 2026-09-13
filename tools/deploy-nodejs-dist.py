@@ -8,7 +8,7 @@ Usage:
   ./deploy-nodejs-dist.py [output-dir]
   VERSIONS="v26.6.0 v26.7.0" ./deploy-nodejs-dist.py [output-dir]
 
-  output-dir defaults to /var/www/html/dist (nginx 80 port web root).
+  output-dir defaults to /var/www/html/dist.
 
 Layout (compatible with nodejs.org/dist):
   <output-dir>/
@@ -366,34 +366,12 @@ def main():
     gen_root_index(out_dir, versions)
 
     print()
-    info("Deployment complete")
+    info("Deployment tree generated")
     with open(os.path.join(out_dir, "index.tab")) as f:
         line_count = len(f.readlines())
-    # out_dir is served at /<basename>/ under the parent dir, so the nginx
-    # root must be the parent (e.g. /var/www/html/dist -> root /var/www/html,
-    # URL prefix /dist).  Do not use "listen 80 default_server;" in a new
-    # block unless you are replacing the existing default server.
-    nginx_root = os.path.dirname(out_dir)
-    url_prefix = "/" + os.path.basename(out_dir)
-    # Heredoc marker must start at column 0 for the pasted script to work.
     print(f"""    Output dir: {out_dir}
     Served versions: {' '.join(versions)}
-    index.tab: {line_count} lines (incl. header)
-
-nginx: replace your default site (copy-paste the whole block):
-    rm -f /etc/nginx/sites-enabled/default
-    cat > /etc/nginx/sites-enabled/default <<'EOF'
-    server {{
-        listen 80 default_server;
-        listen [::]:80 default_server;
-        root {nginx_root};
-        location {url_prefix} {{ try_files $uri $uri/ =404; }}
-    }}
-EOF
-    nginx -t && systemctl reload nginx
-
-Client usage:
-    NVM_NODEJS_ORG_MIRROR=http://<host>{url_prefix} nvm install {versions[0]}""")
+    index.tab: {line_count} lines (incl. header)""")
 
 
 if __name__ == "__main__":
