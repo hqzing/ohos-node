@@ -6,3 +6,4 @@ manifest_tag.xml
 llvm-19
 node
 *.swp
+.dist-out/

@@ -28,11 +28,12 @@ jobs:
           OSS_AK: ${{ secrets.OSS_AK }}
           OSS_SK: ${{ secrets.OSS_SK }}
         run: |
+          region=$(echo "$OSS_ENDPOINT" | sed 's/^https\?:\/\///;s/^oss-//;s/\..*//')
           ossutil sync .dist-out/ oss://ohos-node/dist/ --delete -f \
-            -e "$OSS_ENDPOINT" -i "$OSS_AK" -k "$OSS_SK"
+            -e "$OSS_ENDPOINT" -i "$OSS_AK" -k "$OSS_SK" --region "$region"
           for f in index.html favicon.ico favicon.svg; do
             ossutil cp -f "dist-page/$f" "oss://ohos-node/$f" \
-              -e "$OSS_ENDPOINT" -i "$OSS_AK" -k "$OSS_SK"
+              -e "$OSS_ENDPOINT" -i "$OSS_AK" -k "$OSS_SK" --region "$region"
           done
 
       - name: Refresh CDN cache
