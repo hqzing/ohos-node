@@ -46,9 +46,11 @@ You need a Linux x64 host to cross-compile Node.js with the supplied `build.sh`.
 
 Example on Ubuntu 24.04 x64:
 ```sh
-sudo apt update && sudo apt install -y build-essential unzip jq
+sudo apt-get update && sudo apt-get install -y build-essential unzip jq
 ./build.sh v26.7.0
 ```
+
+> Ubuntu 26.04 is not supported.
 
 **2. CI Build**
 

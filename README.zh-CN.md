@@ -46,9 +46,10 @@ FNM_NODE_DIST_MIRROR=https://ohos-node.com/dist fnm install 26
 
 这里以 Ubuntu 24.04 x64 作为示例：
 ```sh
-sudo apt update && sudo apt install -y build-essential unzip jq
+sudo apt-get update && sudo apt-get install -y build-essential unzip jq
 ./build.sh v26.7.0
 ```
+> 不支持 Ubuntu 26.04。
 
 **2\. 使用流水线构建**
 

@@ -12,10 +12,10 @@ permissions: write-all
 
 jobs:
   build-and-release:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
       - name: Set Node.js branch or tag name
         run: |
           if [ "${{ github.event_name }}" == "release" ]; then
@@ -24,11 +24,11 @@ jobs:
             echo "VERSION=main" >> $GITHUB_ENV
           fi
       - name: Install tools
-        run: sudo apt update && sudo apt install -y build-essential unzip jq
+        run: sudo apt-get update && sudo apt-get install -y build-essential unzip jq
       - name: Build
         run: ./build.sh ${{ env.VERSION }}
       - name: Upload artifact
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           path: |
             node-${{ env.VERSION }}-openharmony-arm64.tar.gz
